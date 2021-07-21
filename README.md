@@ -28,14 +28,14 @@ to set the new profile.
 
 Where arguments can be one or more of the following:
 
-Process ID of konsole (terminal emulator) window.
-Profile name to switch to.
-Tab session number in case of multiple tabs.
+- Process ID of konsole (terminal emulator) window.
+- Profile name to switch to.
+- Tab session number in case of multiple tabs.
 
 Options are: 
-To show available profiles: -l
-To show this help: -h
-To show full help: --help
+- To show available profiles: -l
+- To show this help: -h
+- To show full help: --help
 
 
 # set-konsole-tab-name
