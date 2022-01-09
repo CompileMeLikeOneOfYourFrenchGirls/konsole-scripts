@@ -8,6 +8,10 @@ tab session in case of multiple tabs open in the same window.
 Is it also possible to supply a valid terminal window PID to change the profile of that specific window.
 If no tab number is passed to the script,  it will try to change the profile of the first tab.
 
+NOTE: sometimes the tab number inputted corresponds to a tab that has been open and closed in the past, in the same session.
+So even if the tab number passed seems to be correct, the actual tab affected may not be the one desired.
+The script always goes down to the first tab available, if present, so use higher numbers until the desired tab is found.
+
 We get the window process using:
 
 `xprop -id \$(xdpyinfo | grep -Eo 'window 0x[^,]+' | cut -d\" \" -f2) | grep PID`
