@@ -1,6 +1,7 @@
 #!/bin/bash
 
 display_help () {
+  printf "Switch KOnsole PROfile\n"
   printf "This script switches the active profile for a KDE Konsole terminal between two hardcoded profiles.\n"
   printf "Supply no arguments to automatically get the PID of the active terminal window.\n"
   printf "Or supply a valid terminal window PID to change the profile of that specific window.\n"
