@@ -54,7 +54,7 @@ switch_konsole_profile () {
 
   if [[ -z "$profile" ]] ; then
 
-    current_profile="$(qdbus org.kde.konsole-$pid /Sessions/"$tabsession" profile)"
+    current_profile="$(qdbus org.kde.konsole-"$pid" /Sessions/"$tabsession" profile)"
 
     #If the qdbus command returns an Error, most likely the tab number is incorrect
     #We increase the number until we find a valid tab session, or break the loop if we reach 20
@@ -131,16 +131,18 @@ confirm_profile () {
 check_pid () {
 
   pslist=$(pgrep -lf /usr/bin/konsole)
+  for array_pid in "${pslist[@]}"; do
+    if [[ "$array_pid" == "$1" ]]; then
+      printf "Correct PID value passed!"
+      pid="$1"
+      return
+    fi
+  done
 
-  echo "$pslist" | grep -q "$pid"
-
-  if ! [[ "$?" = "0" ]]; then
-
-    printf "Error, wrong PID number, falling back to this terminal emulator PID\n"
-    printf "\n"
-    get_terminal_pid
-    printf "PID value is: %s\n" "$pid"
-  fi
+  printf "Error, wrong PID number, falling back to this terminal emulator PID\n"
+  printf "\n"
+  get_terminal_pid
+  printf "PID value is: %s\n" "$pid"
 
 }
 
@@ -286,7 +288,7 @@ main () {
     elif [[ "$arg1" =~ ^[0-9]+$ ]]; then
 
       pid="$arg1"
-      check_pid
+      check_pid "$pid"
 
     else
 
